@@ -1,6 +1,7 @@
 package io.github.benkoff.spring5books.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Created by Ben on 2017-10-18.
@@ -12,7 +13,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String title;
     private String description;
@@ -33,11 +34,11 @@ public class Book {
         this.readAlready = readAlready;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,5 +88,31 @@ public class Book {
 
     public void setReadAlready(boolean readAlready) {
         this.readAlready = readAlready;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", printYear=" + printYear +
+                ", readAlready=" + readAlready +
+                '}';
     }
 }
