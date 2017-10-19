@@ -19,19 +19,19 @@ public class Book {
     private String description;
     private String author;
     private String isbn;
-    private int printYear;
-    private boolean readAlready;
+    private int printed;
+    private boolean readalready;
 
     public Book() {
     }
 
-    public Book(String title, String description, String author, String isbn, int printYear, boolean readAlready) {
+    public Book(String title, String description, String author, String isbn, int printed, boolean readalready) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.isbn = isbn;
-        this.printYear = printYear;
-        this.readAlready = readAlready;
+        this.printed = printed;
+        this.readalready = readalready;
     }
 
     public Long getId() {
@@ -74,20 +74,20 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public int getPrintYear() {
-        return printYear;
+    public int getPrinted() {
+        return printed;
     }
 
-    public void setPrintYear(int printYear) {
-        this.printYear = printYear;
+    public void setPrinted(int printed) {
+        this.printed = printed;
     }
 
-    public boolean isReadAlready() {
-        return readAlready;
+    public boolean isReadalready() {
+        return readalready;
     }
 
-    public void setReadAlready(boolean readAlready) {
-        this.readAlready = readAlready;
+    public void setReadalready(boolean readalready) {
+        this.readalready = readalready;
     }
 
     @Override
@@ -111,8 +111,8 @@ public class Book {
                 ", description='" + description + '\'' +
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", printYear=" + printYear +
-                ", readAlready=" + readAlready +
+                ", printed=" + printed +
+                ", readalready=" + readalready +
                 '}';
     }
 }
