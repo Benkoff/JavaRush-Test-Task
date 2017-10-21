@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<p lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
     <title>My Library</title>
 </head>
-<body>
-<h1>My Books</h1>
 
+<h1>My Books</h1>
 <table class="table table-striped">
     <tr>
         <th>ID</th>
@@ -28,6 +27,7 @@
         <td th:text="${book.readalready}">false</td>
     </tr>
 </table>
+<h3><a href="index.html">Return to Home page</a></h3>
 
 </body>
 </html>

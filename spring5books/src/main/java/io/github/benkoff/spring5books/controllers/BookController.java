@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Ben on 2017-10-19.
+ * Created by Benkoff on 2017-10-19.
  */
 
 @Controller
@@ -16,6 +16,13 @@ public class BookController {
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
+    }
+
+    @RequestMapping({"", "/", "index"})
+    public String getIndex(Model model) {
+//        model.addAttribute("books", bookService.getAllBooks());
+
+        return "index";
     }
 
     @RequestMapping("/books")

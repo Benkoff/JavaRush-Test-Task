@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 /**
- * Created by Ben on 2017-10-18.
+ * Created by Benkoff on 2017-10-18.
  *
  */
 
@@ -14,7 +14,6 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String title;
     private String description;
     private String author;
