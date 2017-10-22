@@ -33,4 +33,9 @@ public class BookServiceImpl implements BookService {
 
         return bookOptional.get();
     }
+
+    @Override
+    public Set<Book> addBook() {
+        return new HashSet<Book>();
+    }
 }

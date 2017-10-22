@@ -6,4 +6,5 @@ import java.util.Set;
 public interface BookService {
     Set<Book> getAllBooks();
     Book findById(Long i);
+    Set<Book> addBook();
 }
