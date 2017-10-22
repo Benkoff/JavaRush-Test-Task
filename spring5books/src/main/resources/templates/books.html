@@ -21,6 +21,8 @@
 
 </head>
 <body>
+<!--/*@thymesVar id="books" type="java.util.List"*/-->
+<!--/*@thymesVar id="book" type="io.github.benkoff.spring5books.domain.Book"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="">
@@ -40,11 +42,10 @@
                                 <th>ISBN</th>
                                 <th>Print Year</th>
                                 <th>Read Already</th>
-                                <th><a href="/book/add" class="btn btn-success">Add</a></th>
+                                <th><a href="/book/new" class="btn btn-success">Add</a></th>
                             </tr>
                             </thead>
                             <tr th:each="book : ${books}">
-                                <!--/*@thymesVar id="book" type="io.github.benkoff.spring5books.domain.Book"*/-->
                                 <td th:text="${book.id}">123</td>
                                 <td th:text="${book.title}">Title</td>
                                 <td th:text="${book.description}">Description</td>

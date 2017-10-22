@@ -28,12 +28,5 @@ public class BookshelfController {
 
         return "books";
     }
-
-    @RequestMapping("/book/add")
-    public String addBook(Model model) {
-        model.addAttribute("add", bookService.addBook());
-
-        return "/book/add";
-    }
 }
 

@@ -1,8 +1,12 @@
 package io.github.benkoff.spring5books.services;
 
+import io.github.benkoff.spring5books.commands.BookCommand;
+import io.github.benkoff.spring5books.converters.BookCommandToBook;
+import io.github.benkoff.spring5books.converters.BookToBookCommand;
 import io.github.benkoff.spring5books.domain.Book;
 import io.github.benkoff.spring5books.repositories.BookRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -11,9 +15,15 @@ import java.util.Set;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+    private final BookCommandToBook bookCommandToBook;
+    private final BookToBookCommand bookToBookCommand;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository,
+                           BookCommandToBook bookCommandToBook,
+                           BookToBookCommand bookToBookCommand) {
         this.bookRepository = bookRepository;
+        this.bookCommandToBook = bookCommandToBook;
+        this.bookToBookCommand = bookToBookCommand;
     }
 
     @Override
@@ -35,30 +45,27 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Set<Book> addBook() {
-        return new HashSet<Book>();
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
     }
 
     @Override
-    public Set<Book> deleteAllById(Long id) {
-//        Book book = findById(id);
-//        Set<Book> books = getAllBooks();
+    @Transactional
+    public BookCommand saveBookCommand(BookCommand command) {
+        Book detachedBook = bookCommandToBook.convert(command);
+        Book savedBook = bookRepository.save(detachedBook);
 
-//        bookRepository.deleteAll(new Long(id));
-        return null;
+        return bookToBookCommand.convert(savedBook);
     }
 
     @Override
-    public Book readById(Long id) {
-//
-        return null;
+    public Long getNextId() {
+        return getAllBooks().stream().map(i -> i.getId()).max(Long::compare).get() + 1;
     }
 
     @Override
-    public Book saveById(Long id) {
-        Book book = findById(id);
-        bookRepository.save(book);
-
-        return book;
+    @Transactional
+    public BookCommand findCommandById(Long id) {
+        return bookToBookCommand.convert(findById(id));
     }
 }
