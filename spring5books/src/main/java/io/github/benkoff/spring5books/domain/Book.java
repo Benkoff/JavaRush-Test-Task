@@ -1,4 +1,4 @@
-package io.github.benkoff.spring5books.model;
+package io.github.benkoff.spring5books.domain;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package io.github.benkoff.spring5books.repositories;
 
-import io.github.benkoff.spring5books.model.Book;
+import io.github.benkoff.spring5books.domain.Book;
 import org.springframework.data.repository.CrudRepository;
 
 /**
