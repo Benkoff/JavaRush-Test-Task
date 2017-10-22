@@ -38,4 +38,27 @@ public class BookServiceImpl implements BookService {
     public Set<Book> addBook() {
         return new HashSet<Book>();
     }
+
+    @Override
+    public Set<Book> deleteAllById(Long id) {
+//        Book book = findById(id);
+//        Set<Book> books = getAllBooks();
+
+//        bookRepository.deleteAll(new Long(id));
+        return null;
+    }
+
+    @Override
+    public Book readById(Long id) {
+//
+        return null;
+    }
+
+    @Override
+    public Book saveById(Long id) {
+        Book book = findById(id);
+        bookRepository.save(book);
+
+        return book;
+    }
 }

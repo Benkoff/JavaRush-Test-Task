@@ -23,40 +23,81 @@
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
-        <div class="">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h1 class="panel-title">View Book: Read, Replace or Remove</h1>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover ">
-                            <thead class="thead-inverse">
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Print Year</th>
-                                <th>Read Already</th>
-                            </tr>
-                            </thead>
-                            <tr>
-                                <td th:text="${book.id}">123</td>
-                                <td th:text="${book.title}">Title</td>
-                                <td th:text="${book.description}">Description</td>
-                                <td th:text="${book.author}">Author</td>
-                                <td th:text="${book.isbn}">Isbn</td>
-                                <td th:text="${book.printed}">PrintYear</td>
-                                <td th:text="${book.readalready}">false</td>
-                                <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Remove</a></td>
-                            </tr>
-                        </table>
-                </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">Read or Remove Book</h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Print Year</th>
+                        <th>Read Already</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td th:text="${book.id}">123</td>
+                        <td th:text="${book.title}">Title</td>
+                        <td th:text="${book.description}">Description</td>
+                        <td th:text="${book.author}">Author</td>
+                        <td th:text="${book.isbn}">Isbn</td>
+                        <td th:text="${book.printed}">PrintYear</td>
+                        <td th:text="${book.readalready}">false</td>
+                        <!--/*@thymesVar id="book" type="io.github.benkoff.spring5books.domain.Book"*/-->
+                        <td><a th:href="@{/read/{id}(id=${book.id})}" class="btn btn-success">Read</a></td>
+                        <!--/*@thymesVar id="book" type="io.github.benkoff.spring5books.domain.Book"*/-->
+                        <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">Replace with New Edition</h1>
+            </div>
+            <div class="panel-body">
+                <!--/*@thymesVar id="book" type="io.github.benkoff.spring5books.domain.Book"*/-->
+                <form th:object="${book}" th:action="@{save)}" action="#" method="post">
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" th:field="*{title}" class="form-control" placeholder="Enter title" />
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input type="text" th:field="*{description}" class="form-control" placeholder="Enter description" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>ISBN:</label>
+                                <input type="text" th:field="*{isbn}" class="form-control" placeholder="Enter ISBN" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Print Year:</label>
+                                <input type="text" th:field="*{printed}" class="form-control" placeholder="Enter Print Year" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Replace</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <h3><a href="../../books.html">Return to Bookshelf</a></h3>
 
 </body>

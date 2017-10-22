@@ -52,7 +52,7 @@
                                 <td th:text="${book.isbn}">Isbn</td>
                                 <td th:text="${book.printed}">PrintYear</td>
                                 <td th:text="${book.readalready}">false</td>
-                                <td><a href="#" th:href="@{'/book/show/' + ${book.id}}">View</a> </td>
+                                <td><a href="#" th:href="@{'/book/show/' + ${book.id}}" class="btn btn-default">View</a> </td>
                             </tr>
                         </table>
                     </div>
