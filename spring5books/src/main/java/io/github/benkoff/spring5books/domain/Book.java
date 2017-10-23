@@ -18,7 +18,7 @@ public class Book {
     private String description;
     private String author;
     private String isbn;
-    private int printed;
+    private Integer printed;
     private boolean readalready;
 
     public Book() {

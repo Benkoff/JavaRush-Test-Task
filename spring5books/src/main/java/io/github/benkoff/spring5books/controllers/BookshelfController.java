@@ -1,8 +1,11 @@
 package io.github.benkoff.spring5books.controllers;
 
+import io.github.benkoff.spring5books.domain.Sample;
 import io.github.benkoff.spring5books.services.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BookshelfController {
     private final BookService bookService;
+    private Sample sample = new Sample();
 
     public BookshelfController(BookService bookService) {
         this.bookService = bookService;
@@ -22,11 +26,23 @@ public class BookshelfController {
         return "index";
     }
 
+    @PostMapping
     @RequestMapping("/books")
-    public String getBooks(Model model) {
-        model.addAttribute("books", bookService.getAllBooks(""));
+    public String sampleSubmit(@ModelAttribute Sample sample, Model model) {
+        if (!sample.equals(null))
+            this.sample = sample;
+        model.addAttribute("sample", sample);
+        model.addAttribute("books", bookService.getAllBooks(sample.getContent()));
 
         return "books";
     }
+
+//    @RequestMapping("/books")
+//    public String getBooks(Model model) {
+//        model.addAttribute("sample", sample);
+//        model.addAttribute("books", bookService.getAllBooks(sample.getContent()));
+//
+//        return "books";
+//    }
 }
 

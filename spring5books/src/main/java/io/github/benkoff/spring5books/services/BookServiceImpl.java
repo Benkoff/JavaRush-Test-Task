@@ -27,24 +27,38 @@ public class BookServiceImpl implements BookService {
         this.bookToBookCommand = bookToBookCommand;
     }
 
-    // this realization is based on CrudRepository extension but there is
-    // PagingAndSortingRepository which makes all the same and even more under the hood
+    // TODO refactor to PagingAndSortingRepository
     @Override
     public Set<Book> getAllBooks(String sample) {
         Set<Book> books = new HashSet<>();
         bookRepository.findAll().iterator().forEachRemaining(books::add);
 
-        // I have no idea where to put the form receiving String sample
         if (!sample.equals("") && !sample.equals(null)) {
-            Set<Book> filteredTitles = books.stream()
-                    .filter(i -> i.getTitle().toLowerCase().contains(sample.toLowerCase()))
-                    .collect(Collectors.toSet());
-            Set<Book> filteredAuthors = books.stream()
-                    .filter(i -> i.getAuthor().toLowerCase().contains(sample.toLowerCase()))
-                    .collect(Collectors.toSet());
+            Set<Book> temp = new HashSet<>();
+            temp.addAll(books.stream().filter(
+                    i -> i.getId().toString()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> i.getTitle()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> i.getDescription()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> i.getAuthor()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> i.getIsbn()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> new Integer(i.getPrinted()).toString()
+                            .toLowerCase().contains(sample.toLowerCase())).collect(Collectors.toSet()));
+            temp.addAll(books.stream().filter(
+                    i -> (i.isReadalready() ? "true" : "false")
+                            .contains(sample.toLowerCase())).collect(Collectors.toSet()));
+
             books = new HashSet<>();
-            books.addAll(filteredTitles);
-            books.addAll(filteredAuthors);
+            books.addAll(temp);
         }
 
         return books;
