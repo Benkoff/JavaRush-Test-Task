@@ -3,6 +3,7 @@ package io.github.benkoff.spring5books.domain;
 /**
  * Created by Ben on 2017-10-24.
  */
+
 public class Sample {
     private String content;
 

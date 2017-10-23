@@ -29,20 +29,11 @@ public class BookshelfController {
     @PostMapping
     @RequestMapping("/books")
     public String sampleSubmit(@ModelAttribute Sample sample, Model model) {
-        if (!sample.equals(null))
+        if (!sample.equals(null) && !sample.getContent().equals(null))
             this.sample = sample;
         model.addAttribute("sample", sample);
         model.addAttribute("books", bookService.getAllBooks(sample.getContent()));
 
         return "books";
     }
-
-//    @RequestMapping("/books")
-//    public String getBooks(Model model) {
-//        model.addAttribute("sample", sample);
-//        model.addAttribute("books", bookService.getAllBooks(sample.getContent()));
-//
-//        return "books";
-//    }
 }
-

@@ -53,10 +53,6 @@ public class BookController {
     @PostMapping
     @RequestMapping("book")
     public String saveBook(@ModelAttribute BookCommand command) {
-        // in fact it doesn't work because of prior wrong type error in BookCommand field
-        if (!new Integer(command.getPrinted()).toString().matches("\\d+")) {
-            return "book";
-        }
         BookCommand savedCommand = bookService.saveBookCommand(command);
 
         return "redirect:/books";
@@ -65,10 +61,6 @@ public class BookController {
     @PostMapping
     @RequestMapping("book/update")
     public String updateBook(@ModelAttribute BookCommand command) {
-        // in fact it doesn't work because of prior wrong type error in BookCommand field
-        if (!new Integer(command.getPrinted()).toString().matches("\\d+")) {
-            return "book";
-        }
         Long id = command.getId();
         command.setAuthor(bookService.findById(id).getAuthor());
         command.setReadalready(false);

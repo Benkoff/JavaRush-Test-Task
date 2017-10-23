@@ -34,11 +34,11 @@
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
                         <label>Authors:</label>
-                        <input type="text" th:field="*{author}" class="form-control" placeholder="Enter authors" />
+                        <input type="text" required="required" th:field="*{author}" class="form-control" placeholder="Enter authors" />
                     </div>
                     <div class="form-group">
                         <label>Title:</label>
-                        <input type="text" th:field="*{title}" class="form-control" placeholder="Enter title" />
+                        <input type="text" required="required" th:field="*{title}" class="form-control" placeholder="Enter title" />
                     </div>
                     <div class="form-group">
                         <label>Description:</label>
@@ -55,7 +55,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Print Year:</label>
-                                <input type="text" th:field="*{printed}" class="form-control" placeholder="Enter Print Year" />
+                                <input type="number" th:field="*{printed}" class="form-control" placeholder="Enter Print Year" />
                             </div>
                         </div>
                     </div>
