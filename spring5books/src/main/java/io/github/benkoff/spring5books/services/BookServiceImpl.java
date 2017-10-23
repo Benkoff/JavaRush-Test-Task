@@ -27,6 +27,8 @@ public class BookServiceImpl implements BookService {
         this.bookToBookCommand = bookToBookCommand;
     }
 
+    // this realization is based on CrudRepository extension but there is
+    // PagingAndSortingRepository which makes all the same and even more under the hood
     @Override
     public Set<Book> getAllBooks(String sample) {
         Set<Book> books = new HashSet<>();
