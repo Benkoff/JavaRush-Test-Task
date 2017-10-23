@@ -24,7 +24,7 @@ public class BookshelfController {
 
     @RequestMapping("/books")
     public String getBooks(Model model) {
-        model.addAttribute("books", bookService.getAllBooks());
+        model.addAttribute("books", bookService.getAllBooks(""));
 
         return "books";
     }

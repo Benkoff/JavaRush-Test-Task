@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -27,9 +28,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Set<Book> getAllBooks() {
+    public Set<Book> getAllBooks(String sample) {
         Set<Book> books = new HashSet<>();
         bookRepository.findAll().iterator().forEachRemaining(books::add);
+
+        // I have no idea where to put the form receiving String sample
+        if (!sample.equals("") && !sample.equals(null)) {
+            Set<Book> filteredTitles = books.stream()
+                    .filter(i -> i.getTitle().toLowerCase().contains(sample.toLowerCase()))
+                    .collect(Collectors.toSet());
+            Set<Book> filteredAuthors = books.stream()
+                    .filter(i -> i.getAuthor().toLowerCase().contains(sample.toLowerCase()))
+                    .collect(Collectors.toSet());
+            books = new HashSet<>();
+            books.addAll(filteredTitles);
+            books.addAll(filteredAuthors);
+        }
 
         return books;
     }
@@ -60,7 +74,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Long getNextId() {
-        return getAllBooks().stream().map(i -> i.getId()).max(Long::compare).get() + 1;
+        return getAllBooks("").stream().map(i -> i.getId()).max(Long::compare).get() + 1;
     }
 
     @Override

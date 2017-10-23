@@ -51,10 +51,8 @@ public class BookController {
     }
 
     /* *
-    * 1. because of bugs this version does not support @RequestMapping(value = "book", method = ...)
-    * all POST requests it takes as unsupported GET, so use @PostMapping only
-    * 2. due to unknown reason every next automatically given PRIMARY key is taken from the same sequence,
-    * despite of data base drops. this way ID continues to rise and may significantly differ from the initial range.
+    * this version does not support @RequestMapping(value = "book", method = ...)
+    * all POST requests it takes as unsupported GET, this way using @PostMapping
     * */
     @PostMapping
     @RequestMapping("book")
