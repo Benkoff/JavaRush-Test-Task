@@ -33,11 +33,11 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="input-group input-group-sm" action="#" th:action="@{/books}" th:object="${sample}" method="post">
+                    <form class="input-group input-group-md" action="#" th:action="@{/books}" th:object="${sample}" method="post">
                         <input type="text" class="form-control" th:field="*{content}"
                                placeholder="Enter sample text to search with any parameter (you may use letters, words, numbers, true/false for already read books etc.)">
                         <span class="input-group-btn">
-                                <button class="btn btn-sm" type="submit">Search</button>
+                                <button class="btn btn-md" type="submit">Search</button>
                             </span>
                     </form>
                 </div>

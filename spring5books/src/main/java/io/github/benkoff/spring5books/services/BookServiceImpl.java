@@ -89,11 +89,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Long getNextId() {
-        return getAllBooks("").stream().map(i -> i.getId()).max(Long::compare).get() + 1;
-    }
-
-    @Override
     @Transactional
     public BookCommand findCommandById(Long id) {
         return bookToBookCommand.convert(findById(id));

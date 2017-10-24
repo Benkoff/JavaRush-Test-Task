@@ -10,5 +10,4 @@ public interface BookService {
     void deleteById(Long id);
     BookCommand saveBookCommand(BookCommand command);
     BookCommand findCommandById(Long id);
-    Long getNextId();
 }
